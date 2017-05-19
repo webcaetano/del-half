@@ -2,9 +2,7 @@ var path = require('path');
 var glob = require('glob');
 var del = require('del');
 var async = require('async');
-var cpFile = require('cp-file');
-var mkdirp = require('mkdirp');
-var fs = require('fs-extra');
+var naturalSort = require('node-natural-sort');
 var _ = require('lodash');
 
 // insert defaults here
@@ -13,11 +11,11 @@ var defaults = {
 }
 
 var isOdd = function(val){
-	return (val % 2)==1;
+	return (val % 2)==0;
 }
 
 var isEven = function(val){
-	return (val % 2)==0;
+	return (val % 2)==1;
 }
 
 var self = function(src, options, done){
@@ -39,7 +37,7 @@ var self = function(src, options, done){
 			glob(src,{nodir:true},callback);
 		},
 		del:['files',function(results,callback){
-			var files = _.filter(results.files,function(file,i){
+			var files = _.filter(results.files.sort(naturalSort()),function(file,i){
 				return checkFunc(i);
 			});
 
