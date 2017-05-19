@@ -1,0 +1,40 @@
+{
+  "name": "del-half",
+  "version": "0.0.0",
+  "description": "Delete half files in a directory",
+  "main": "index.js",
+  "author": "Andre Caetano",
+  "license": "MIT",
+  "bin": {
+    "dhalf": "cli.js"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "dependencies": {
+    "async": "^2.1.2",
+    "node-natural-sort": "^0.8.6",
+    "cp-file": "^4.1.1",
+    "glob": "^7.1.1",
+    "lodash": "^4.17.4",
+    "meow": "^3.7.0",
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "del": "^2.2.2"
+  },
+  "keywords": [
+    "cli-app",
+    "cli",
+    "delete",
+    "delete-half",
+    "half",
+    "sprite",
+    "frames"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webcaetano/del-half"
+  }
+}
