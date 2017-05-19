@@ -1,6 +1,6 @@
 {
   "name": "del-half",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Delete half files in a directory",
   "main": "index.js",
   "author": "Andre Caetano",

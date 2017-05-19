@@ -65,6 +65,10 @@ dhalf(src,{
 });
 ```
 
+## Why ? 
+
+- Cut frames of an animation by half.
+
 ## License
 
 MIT
