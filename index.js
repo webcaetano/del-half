@@ -36,14 +36,40 @@ var self = function(src, options, done){
 		files:function(callback){
 			glob(src,{nodir:true},callback);
 		},
-		del:['files',function(results,callback){
-			var files = _.filter(results.files.sort(naturalSort()),function(file,i){
-				return checkFunc(i);
+		folders:['files',function(results,callback){
+			var folders = _.reduce(results.files,function(folders,file){
+				var folderName = path.dirname(file)
+				if(!folders[path.dirname(file)]){
+					folders[path.dirname(file)] = [];
+				}
+
+				folders[path.dirname(file)].push(file);
+
+				return folders;
+			},{});
+
+			// console.log(folders)
+
+			callback(null,folders);
+		}],
+		del:['folders',function(results,callback){
+			var folders = results.folders;
+			var run = [];
+
+			_.each(folders,function(folder){
+
+				var files = _.filter(folder.sort(naturalSort()),function(file,i){
+					return checkFunc(i);
+				});
+
+				run.push(function(callback){
+					del(files).then(function(data){
+						callback(null,data);
+					});
+				});
 			});
 
-			del(files).then(function(data){
-				callback(null,data);
-			});
+			async.parallel(run,callback);
 		}]
 	},function(err,results){
 		if(done) done(err,results);
